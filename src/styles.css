@@ -1,0 +1,90 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.container {
+}
+
+.form-centered {
+	text-align: center;
+}
+
+h6.header {
+	color: #a2b9bc
+}
+
+hr {
+	margin-top: 0px;
+}
+
+label {
+	font-style: italic;
+	font-family: sans-serif;
+}
+
+.form-row > button {
+	margin-top: 10px !important;
+	margin-left: 2.5px !important;
+	margin-right: 2.5px !important;
+}
+
+.right-col {
+	text-align: right;
+}
+
+.left-col {
+	text-align: left;
+}
+
+.flex {
+	display: flex;
+}
+
+.block {
+	display: block;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.full-height {
+	height: 100%;
+}
+
+.btn-dark {
+	background-color: #343a3f;
+	color: #ffffff;
+}
+
+html, 
+body {
+    height: 100%;
+}
+
+.afu-select-btn {
+	background-color: #4285f4!important;
+    color: #fff;
+    font-style: normal;
+    font-size: .94rem;
+}
+
+.afu-reset-btn {
+	background-color: #6c757d!important;
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: .94rem;
+}
+
+.afu-upload-btn {
+	background-color: #62c952!important;
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: .94rem;
+}
+
+
+.hide {
+    display: none;
+}

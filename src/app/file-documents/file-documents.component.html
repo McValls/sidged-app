@@ -1,0 +1,55 @@
+<div>
+	<form [formGroup]="form">
+	  	<div class="container form-group col-md-6">
+	  		<div class="form-row">
+  				<table class="table table-striped table-bordered">
+					<thead class="thead-dark">
+						<th scope="col">#</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Acción</th>
+					</thead>
+					<tbody>
+						<tr *ngFor="let file of fileList; index as i">
+							<th scope="row">{{i + 1}}</th>
+							<td>{{file.name}}</td>
+							<td><button (click)="download(file)"><i class="fas fa-download"></i></button></td>
+						</tr>
+					</tbody>
+				</table>
+	  		</div>
+	  		<div class="upload-container" *ngIf="classId != null">
+	  			<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="fileDocumentType">Tipo de adjunto:</label>
+						<select id="fileDocumentType" class="form-control col-md-12" formControlName="selectedFileDocumentType">
+							<option *ngFor="let fileDocumentType of fileDocumentTypes" [value]="fileDocumentType">{{fileDocumentType}}</option>
+						</select>
+					</div>
+				</div>
+				<div *ngIf="selectedFileDocumentType == linkType">
+			  		<div class="form-row">
+				  		<div class="form-group col-md-12">
+				  			<label for="name">Nombre:</label>
+							<input type="text" class="form-control" id="name" formControlName="name">
+							<errors [field]="formName"></errors>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+				  			<label for="link">Link:</label>
+							<input type="text" class="form-control" id="link" formControlName="link">
+							<errors [field]="formLink"></errors>
+						</div>
+					</div>
+					<div class="form-row block">
+				  		<button type="button" class="btn btn-success afu-upload-btn" (click)="saveLink()">Guardar</button>
+				  	</div>
+				</div>
+				<div *ngIf="selectedFileDocumentType == blobType">
+					<angular-file-uploader [config]="afuConfig" (ApiResponse)="onUpload($event)"></angular-file-uploader>			
+				</div>
+	  		</div>
+	  	</div>
+	  	<loading [loading]="loading" [fullScreen]="true"></loading>
+  	</form>
+</div>

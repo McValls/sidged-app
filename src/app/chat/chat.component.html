@@ -1,0 +1,33 @@
+<div class="full-height container col-md-12">
+	<div>
+		<h3>Curso {{courseId}}</h3>
+	</div>
+
+	<hr>
+
+	<div class="messages-container">
+		<div *ngFor="let message of messages | async">
+			<div class="chat-container" [ngClass]="{'darker': isIncomingMessage(message.userType)}">
+				<p>{{message.author}}</p>
+				<hr>
+				<p>{{message.text}}</p>
+				<span class="time-right">{{message.date.toDate() | date: 'short'}}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="messages-input">
+		<form [formGroup]="form">
+			<div class="container form-group">
+				<div class="form-row">
+					<div class="form-group col-md-12 flex">
+						<input type="text" class="form-control" id="text" formControlName="text">
+						<button type="button" class="btn btn-success btn-sm" (click)="sendMessage()">
+							<i class="fas fa-paper-plane"></i>
+						</button>
+					</div>
+			  	</div>
+			</div>
+		</form>
+	</div>
+</div>

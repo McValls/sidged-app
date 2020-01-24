@@ -1,0 +1,31 @@
+<div class="container col-md-12">
+	<h2>Clase {{classDate}}</h2>
+	<hr>
+  	
+  	<div class="form-group form-centered">
+		<div class="form-row">
+			<div class="col-md-12">
+				<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(onTakePresentsClick(!isTakePresentsOpened))">Tomar Lista</button>
+			</div>
+			<div class="teacher-class-present-list" *ngIf="isTakePresentsOpened">
+				<teacher-class-present-list 
+					[courseId]="courseId" 
+					[classId]="classId"
+					(showListListener)="onTakePresentsClick($event)"></teacher-class-present-list>
+			</div>
+		</div>
+	  		
+		<div class="form-row">
+			<div class="col-md-12">
+				<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(onSeeFilesClick(!isFilesOpened))">Archivos</button>
+			</div>
+			<div class="col-md-12" *ngIf="isFilesOpened">
+				<file-documents [classId]="classId"></file-documents>		
+			</div>
+		</div>  		
+  		
+  		
+  		<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(finishClass())">Cerrar Clase</button>
+  		<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(commentClass())">Comentarios</button>
+  	</div>
+</div>

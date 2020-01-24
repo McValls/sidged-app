@@ -1,0 +1,17 @@
+<div *ngIf="field && field.invalid && (field.dirty || field.touched)"
+class="alert alert-danger alert-sm" style="margin-top: 5px">
+
+	<div *ngIf="field.errors.required">
+	Campo obligatorio.
+	</div>
+	<div *ngIf="field.errors.minlength">
+	Debe tener al menos {{minLength}} caracteres.
+	</div>
+	<div *ngIf="field.errors.maxlength">
+	Debe tener como máximo {{maxLength}} caracteres.
+	</div>
+</div>
+
+<div *ngIf="customError" class="alert alert-danger alert-sm" style="margin-top: 5px">
+	{{customError}}
+</div>

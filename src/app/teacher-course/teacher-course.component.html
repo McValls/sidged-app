@@ -1,0 +1,26 @@
+<div class="container col-md-12">
+	<h2> {{course.name}} {{course.year}} </h2>
+	<hr>
+  	
+	<div class="form-group form-centered">
+		<div class="col-md-6" *ngFor="let class of classes">
+			<button 
+				type="button" 
+				class="btn btn-lg col-lg-6" 
+				[ngClass]="{'btn-info': class.classState != 'FINALIZADA', 'btn-danger': class.classState == 'FINALIZADA'}" 
+				(click)="(goToClass(class))">
+				Clase {{class.classNumber}} {{class.date}}
+			</button>
+		</div>
+		<div class="col-md-6">
+			<button type="button" class="btn btn-lg col-lg-6" (click)="(goToChat())">Abrir chat</button>
+		</div>
+	 	<div class="col-md-6">
+  			<button type="button" class="btn btn-success btn-lg col-lg-6" (click)="(newClass())">Nueva clase</button>
+		</div>
+		<div class="col-md-6">
+			<button type="button" class="btn btn-success btn-lg col-lg-6" (click)="(seePresentism())">Ver presentismo</button>
+		</div>
+	</div>
+	<course-presentism [ngClass]="{'hide' : !presentismVisible}" [selectedCourse]="course" ></course-presentism>
+</div>

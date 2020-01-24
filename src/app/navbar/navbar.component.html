@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" [ngClass]="{ 'hide': hide }">
+  <a class="navbar-brand" href="#" (click)="navigateBack($event)">
+    &lt; Atrás
+  </a>
+
+  <button class="navbar-toggler" type="button"
+          (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="teacher-menu"
+       [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{menuHref}}">Menu</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{loginHref}}">Cerrar sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>

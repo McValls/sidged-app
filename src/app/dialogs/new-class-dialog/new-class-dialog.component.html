@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Nueva clase</h1>
+<div mat-dialog-content>
+	<form [formGroup]="form">
+		<label for="classDate">Ingresar la fecha de la clase</label>
+		<input type="date" class="form-control" id="classDate" formControlName="classDate">
+		<errors [field]="formClassDate"></errors>
+	</form>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-success" mat-button (click)="closeDialog()" cdkFocusInitial>Aceptar</button>
+</div>

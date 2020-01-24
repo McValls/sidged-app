@@ -1,0 +1,15 @@
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'loading',
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.css']
+})
+export class LoadingComponent {
+
+	@Input() loading: boolean = false;
+	@Input() fullScreen: boolean = false;
+
+  constructor() { }
+
+}

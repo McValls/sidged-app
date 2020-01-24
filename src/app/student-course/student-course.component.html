@@ -1,0 +1,18 @@
+<div class="container col-md-12">
+	<h2> {{course.name}} {{course.year}} </h2>
+	<hr>
+  	
+	<div class="form-group form-centered">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-dark btn-lg col-lg-6" (click)="(onSeeFilesClick(!isFilesOpened))">Archivos</button>
+		</div>
+		<div class="col-md-12" *ngIf="isFilesOpened">
+			<file-documents></file-documents>		
+		</div>
+	</div>
+	<div class="form-group form-centered">		
+	    <div class="col-md-12">
+	      <button type="button" class="btn btn-dark btn-lg col-lg-6" (click)="(goToChat())">Abrir chat</button>
+	    </div>
+	</div>
+</div>
