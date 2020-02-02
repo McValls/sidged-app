@@ -5,7 +5,7 @@ import { Course } from '../model/course/course.model';
 import { CourseClass } from '../model/course/course-class.model';
 import { NewClassDialogComponent } from '../dialogs/new-class-dialog/new-class-dialog.component';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'teacher-course',

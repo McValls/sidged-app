@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatDialogModule} from "@angular/material";
+import { MatDialogModule } from "@angular/material/dialog";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { AngularFireModule } from '@angular/fire';
