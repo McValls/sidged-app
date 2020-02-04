@@ -6,10 +6,11 @@
     <errors [field]="formSubject"></errors>
     
     <label for="message">Mensaje</label>
-		<input type="text" class="form-control" id="message" formControlName="message">
+		<textarea class="form-control" id="message" formControlName="message"></textarea>
 		<errors [field]="formMessage"></errors>
 	</form>
 </div>
 <div mat-dialog-actions>
-  <button class="btn btn-success" mat-button (click)="closeDialog()" cdkFocusInitial>Aceptar</button>
+  <button class="btn btn-success" mat-button (click)="closeDialog(false)" cdkFocusInitial>Aceptar</button>
+  <button class="btn btn-secondary" mat-button (click)="closeDialog(true)" cdkFocusInitial>Cancelar</button>
 </div>

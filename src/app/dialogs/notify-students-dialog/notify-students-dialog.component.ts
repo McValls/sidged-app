@@ -21,8 +21,12 @@ export class NotifyStudentsDialogComponent implements OnInit {
     });
   }
 
-  closeDialog() {
-    this.dialogRef.close({subject: this.subjectValue, message: this.messageValue});
+  closeDialog(canceled: boolean) {
+    if(canceled) {
+      this.dialogRef.close();
+    } else {
+      this.dialogRef.close({subject: this.subjectValue, message: this.messageValue});
+    }
   }
 
   get formSubject() {

@@ -67,13 +67,15 @@ export class TeacherCourseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().toPromise().then((data) => {
-      this.courseService.notifyStudents(data.subject, data.message, this.course.id).subscribe(
-        res => {
-          alert("Mensaje enviado correctamente.");
-        }, err => {
-          console.log(err);
-        }
-      );
+      if(data) {
+        this.courseService.notifyStudents(data.subject, data.message, this.course.id).subscribe(
+          res => {
+            alert("Mensaje enviado correctamente.");
+          }, err => {
+            console.log(err);
+          }
+        );
+      }
     });
   }
 
