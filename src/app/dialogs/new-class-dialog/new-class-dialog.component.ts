@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -21,9 +21,9 @@ export class NewClassDialogComponent implements OnInit {
     }
 
     closeDialog() {
-    	this.dialogRef.close(this.formClassName.value);
+    	this.dialogRef.close(this.formClassDate.value);
     }
 
-    get formClassName() {return this.form.get('classDate'); }
+    get formClassDate() {return this.form.get('classDate'); }
 
 }

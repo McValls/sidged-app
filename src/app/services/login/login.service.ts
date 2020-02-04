@@ -31,6 +31,10 @@ export class LoginService {
     return postResult;
   }
 
+  public setLoggedUser(loggedUser: UserData) : void {
+    this.loggedUser = loggedUser;
+  }
+
   public getLoggedUser(): UserData {
     if(!this.loggedUser) {
       this.loggedUser = this.sharingDataService.getLoggedUser();

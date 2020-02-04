@@ -34,6 +34,7 @@ import { StudentCourseComponent } from './student-course/student-course.componen
 import { NewClassDialogComponent } from './dialogs/new-class-dialog/new-class-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CoursePresentismComponent } from './teacher-course/course-presentism/course-presentism.component';
+import { NotifyStudentsDialogComponent } from './dialogs/notify-students-dialog/notify-students-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CoursePresentismComponent } from './teacher-course/course-presentism/co
     NewClassDialogComponent,
     NavbarComponent,
     CoursePresentismComponent,
+    NotifyStudentsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { CoursePresentismComponent } from './teacher-course/course-presentism/co
   exports: [
   ],
   entryComponents: [
-    NewClassDialogComponent
+    NewClassDialogComponent,
+    NotifyStudentsDialogComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

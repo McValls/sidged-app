@@ -21,6 +21,9 @@
 		<div class="col-md-6">
 			<button type="button" class="btn btn-success btn-lg col-lg-6" (click)="(seePresentism())">Ver presentismo</button>
 		</div>
+		<div class="col-md-6">
+			<button type="button" class="btn btn-success btn-lg col-lg-6" (click)="(openNotifyDialog())">Notificar Alumnos</button>
+		</div>
 	</div>
 	<course-presentism [ngClass]="{'hide' : !presentismVisible}" [selectedCourse]="course" ></course-presentism>
 </div>

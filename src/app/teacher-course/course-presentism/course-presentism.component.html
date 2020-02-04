@@ -1,7 +1,7 @@
 <div id="chart" class="col-md-12">
   <div *ngIf="chartReady" class="col-md-12">
     <p></p>
-    <p>{{selectedCourse.name}} - {{coursesService.getShift(selectedCourse.shift)}} - {{selectedCourse.year}}</p>
+    <p>{{selectedCourse.name}} - {{getShift(selectedCourse.shift)}} - {{selectedCourse.year}}</p>
     <canvas baseChart
         [datasets]="barChartData"
         [labels]="barChartLabels"

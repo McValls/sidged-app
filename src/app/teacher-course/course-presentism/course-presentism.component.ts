@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Course } from 'src/app/model/course/course.model';
+import { Course, Shift } from 'src/app/model/course/course.model';
 import { AnalysisService } from 'src/app/services/analysis/analysis.service';
 import { PercentageByStudentPresent } from 'src/app/model/presentism/presentism.model';
+import { CourseService } from 'src/app/services/course/course.service';
 
 @Component({
   selector: 'course-presentism',
@@ -57,7 +58,8 @@ export class CoursePresentismComponent implements OnInit {
   	loading: boolean = false;
   	
 
-  	constructor(private analysisService: AnalysisService) { }
+	  constructor(private analysisService: AnalysisService,
+		private courseService: CourseService) { }
 
 	ngOnInit() {
 		this.goToAnalysis();
@@ -110,6 +112,10 @@ export class CoursePresentismComponent implements OnInit {
 	  		console.log(err);
 	  		this.chartReady = false;
 	  	});
+	}
+
+	getShift(shift: Shift): string {
+		return this.courseService.getShift(shift);
 	}
 
 }
