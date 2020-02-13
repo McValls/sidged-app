@@ -16,6 +16,10 @@ export class ClassService {
   	return this.http.post<CourseClass>("http://localhost:8080/class", body);
   }
 
+  public getClass(classId: number) {
+    return this.http.get<CourseClass>("http://localhost:8080/class/" + classId);
+  }
+
   public getClasses(courseId: number) {
   	return this.http.get<Array<CourseClass>>("http://localhost:8080/class/course/" + courseId);
   }
@@ -30,8 +34,12 @@ export class ClassService {
       	{present: studentPresent});
   }
 
-  public finishClass(courseId: number, classId: number){
+  public finishClass(courseId: number, classId: number) {
     return this.http.put("http://localhost:8080/class/finish/"+classId+"/course/"+courseId, {});
+  }
+
+  public reopenClass(courseId: number, classId: number) {
+    return this.http.put("http://localhost:8080/class/reopen/"+classId+"/course/"+courseId, {});
   }
 
   public getPresent(present: StudentPresent) {

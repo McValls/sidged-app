@@ -9,8 +9,8 @@
 		<button type="button" class="btn btn-info btn-sm" (click)="(lateClicked(currentStudent.id))">Tarde</button>
 	</div>
 	<div class="col-md-12 space-between" style="height: 50%">
-		<button type="button btn btn-sm" (click)="(previousIndex())">Anterior</button>
-		<button type="button btn btn-sm" (click)="(nextIndex())">Siguiente</button>
+		<button class="btn btn-sm btn-info" (click)="(previousIndex())">Anterior</button>
+		<button class="btn btn-sm btn-info" (click)="(nextIndex())">Siguiente</button>
 	</div>
 </div>
 <div *ngIf="!studentsList || studentsList.length == 0">

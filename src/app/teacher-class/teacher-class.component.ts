@@ -20,6 +20,8 @@ export class TeacherClassComponent implements OnInit {
     isTakePresentsOpened: boolean = false;
     isFilesOpened: boolean = false;
 
+    class: CourseClass;
+
   	constructor(
       private router: Router,
   		private route: ActivatedRoute,
@@ -30,19 +32,32 @@ export class TeacherClassComponent implements OnInit {
       this.courseId = this.sharingDataService.get("selectedCourse").id;
   		this.classId = this.route.snapshot.params.classId;
       this.classDate = this.route.snapshot.params.classDate;
-  	}
+      this.getClass();
+    }
 
-    public onTakePresentsClick(value: boolean) {
+    private getClass() {
+      this.classService.getClass(this.classId).subscribe((res: CourseClass) => {
+        this.class = res;
+      });
+    }
+
+    onTakePresentsClick(value: boolean) {
       this.isTakePresentsOpened = value;
     }
 
-    public finishClass() {
+    finishClass() {
       this.classService.finishClass(this.courseId, this.classId).subscribe(() => {
         this.router.navigate(['/course-teacher']);
       });
     }
 
-    public onSeeFilesClick(value: boolean){
+    reopenClass() {
+      this.classService.reopenClass(this.courseId, this.classId).subscribe(() => {
+        this.router.navigate(['/course-teacher']);
+      })
+    }
+
+    onSeeFilesClick(value: boolean){
       this.isFilesOpened = value;
     }
 

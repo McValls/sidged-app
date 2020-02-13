@@ -18,16 +18,6 @@ export class LoginService {
   public login(username: string, password: string) {
     let userData: UserData = new UserData(username, password);
     let postResult: Observable<HttpResponse<UserData>> = this.http.post<UserData>(this.url, userData, {observe: 'response'});
-    postResult.subscribe((res: HttpResponse<UserData>) => {
-          let headers = res.headers;
-          this.sharingDataService.storeToken(headers.get("Authorization"));  
-          this.loggedUser = res.body;
-          this.sharingDataService.storeLoggedUser(this.loggedUser);
-        },
-        err => {
-          this.logout();
-        }
-      );
     return postResult;
   }
 

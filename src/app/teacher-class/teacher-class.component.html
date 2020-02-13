@@ -25,7 +25,8 @@
 		</div>  		
   		
   		
-  		<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(finishClass())">Cerrar Clase</button>
-  		<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(commentClass())">Comentarios</button>
+		  <button *ngIf="class.classState === 'PENDIENTE'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(finishClass())">Cerrar Clase</button>
+		  <button *ngIf="class.classState === 'FINALIZADA'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(reopenClass())">Reabrir Clase</button>
+  		
   	</div>
 </div>
