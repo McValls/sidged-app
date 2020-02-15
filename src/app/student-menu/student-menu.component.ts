@@ -14,6 +14,9 @@ export class StudentMenuComponent implements OnInit {
 	courses: Array<Course>;
 	coursesVisible: boolean = false;
 
+	links: Array<StudentLink>;
+	usefulLinkVisible: boolean = false;
+
   	constructor(private courseService: CourseService,
       private router: Router,
       private sharingDataService: SharingDataService) { }
