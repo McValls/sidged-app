@@ -21,11 +21,11 @@ export class CourseService {
   }
 
   private getCourses(userType: UserType){
-    return this.http.get<Array<Course>>("http://localhost:8080/course/by-"+userType.toLowerCase());
+    return this.http.get<Array<Course>>("https://sidged-be.herokuapp.com/course/by-"+userType.toLowerCase());
   }
 
   public notifyStudents(subject: string, message: string, courseId: number) {
-    return this.http.post<void>("http://localhost:8080/course/notify-students", {
+    return this.http.post<void>("https://sidged-be.herokuapp.com/course/notify-students", {
       subject: subject,
       message: message,
       courseId: courseId

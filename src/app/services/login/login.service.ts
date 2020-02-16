@@ -9,7 +9,7 @@ import { SharingDataService } from '../local-storage/sharing-data.service';
 })
 export class LoginService {
 
-  url = "http://localhost:8080/login";
+  url = "https://sidged-be.herokuapp.com/login";
   private loggedUser: UserData;
 
   constructor(private http: HttpClient, private sharingDataService: SharingDataService) {

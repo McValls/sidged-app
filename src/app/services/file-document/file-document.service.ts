@@ -15,15 +15,15 @@ export class FileDocumentService {
 
   	public saveFileLink(classId: number, name: string, link: string){
   		let params = {classId: classId, name: name, link: link};
-  		return this.http.post("http://localhost:8080/file-documents/link", params)
+  		return this.http.post("https://sidged-be.herokuapp.com/file-documents/link", params)
   	}
 
   	public searchFiles(classId: number): Observable<Array<ClassFileDocument>>{
-  		return this.http.get<Array<ClassFileDocument>>("http://localhost:8080/file-documents/class/" + classId);
+  		return this.http.get<Array<ClassFileDocument>>("https://sidged-be.herokuapp.com/file-documents/class/" + classId);
   	}
 
     public searchFilesByCourse(course: Course): Observable<Array<ClassFileDocument>> {
-      return this.http.get<Array<ClassFileDocument>>("http://localhost:8080/file-documents/course/" + course.id);
+      return this.http.get<Array<ClassFileDocument>>("https://sidged-be.herokuapp.com/file-documents/course/" + course.id);
     }
 
   	public downloadFile(file: ClassFileDocument) {

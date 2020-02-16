@@ -12,6 +12,6 @@ export class StudentLinkService {
   constructor(private httpClient: HttpClient) { }
 
   getStudentLinks() : Observable<Array<StudentLink>> {
-    return this.httpClient.get<Array<StudentLink>>("http://localhost:8080/student-link/");
+    return this.httpClient.get<Array<StudentLink>>("https://sidged-be.herokuapp.com/student-link/");
   }
 }

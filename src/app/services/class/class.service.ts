@@ -13,33 +13,33 @@ export class ClassService {
 
   public createClass(courseId: number, classDate: Date) {
   	let body = {date: classDate, courseId: courseId};
-  	return this.http.post<CourseClass>("http://localhost:8080/class", body);
+  	return this.http.post<CourseClass>("https://sidged-be.herokuapp.com/class", body);
   }
 
   public getClass(classId: number) {
-    return this.http.get<CourseClass>("http://localhost:8080/class/" + classId);
+    return this.http.get<CourseClass>("https://sidged-be.herokuapp.com/class/" + classId);
   }
 
   public getClasses(courseId: number) {
-  	return this.http.get<Array<CourseClass>>("http://localhost:8080/class/course/" + courseId);
+  	return this.http.get<Array<CourseClass>>("https://sidged-be.herokuapp.com/class/course/" + courseId);
   }
 
   public getStudentsByCourse(courseId: number, classId: number) {
-    return this.http.get<Array<ClassStudent>>("http://localhost:8080/class/"+classId+"/course/"+courseId+"/students");
+    return this.http.get<Array<ClassStudent>>("https://sidged-be.herokuapp.com/class/"+classId+"/course/"+courseId+"/students");
   }
 
   public updatePresent(classId: number, studentId: number, studentPresent: StudentPresent) {
-	  return this.http.put<Array<ClassStudent>>("http://localhost:8080/student-present/class/"+classId+
+	  return this.http.put<Array<ClassStudent>>("https://sidged-be.herokuapp.com/student-present/class/"+classId+
       	"/student/"+studentId,
       	{present: studentPresent});
   }
 
   public finishClass(courseId: number, classId: number) {
-    return this.http.put("http://localhost:8080/class/finish/"+classId+"/course/"+courseId, {});
+    return this.http.put("https://sidged-be.herokuapp.com/class/finish/"+classId+"/course/"+courseId, {});
   }
 
   public reopenClass(courseId: number, classId: number) {
-    return this.http.put("http://localhost:8080/class/reopen/"+classId+"/course/"+courseId, {});
+    return this.http.put("https://sidged-be.herokuapp.com/class/reopen/"+classId+"/course/"+courseId, {});
   }
 
   public getPresent(present: StudentPresent) {

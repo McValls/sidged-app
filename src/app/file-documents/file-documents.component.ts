@@ -42,7 +42,7 @@ export class FileDocumentsComponent implements OnInit {
     private initAfuConfig() {
       this.afuConfig = {
           uploadAPI: {
-            url:"http://localhost:8080/file-documents/class/" + this.classId,
+            url:"https://sidged-be.herokuapp.com/file-documents/class/" + this.classId,
             headers: {
              "Authorization" : this.sharingDataService.getJwtToken()
             }

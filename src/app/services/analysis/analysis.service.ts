@@ -11,7 +11,7 @@ export class AnalysisService {
   constructor(private http: HttpClient) { }
   
   getAnalysisDataByCourse(courseId: number): Observable<CoursePresentismData> {
-    return this.http.get<CoursePresentismData>("http://localhost:8080/presentism-data/course/"+courseId);
+    return this.http.get<CoursePresentismData>("https://sidged-be.herokuapp.com/presentism-data/course/"+courseId);
   }
 
 }
