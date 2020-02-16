@@ -5,9 +5,12 @@
   	<div class="form-group form-centered">
 		<div class="col-md-6">
 	  		<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="coursesClicked()">Cursos</button>
-	  		<div class="col-md-12" *ngIf="coursesVisible">
+	  		<div class="col-md-12" *ngIf="coursesVisible && courses.length > 0">
 	  			<button *ngFor="let course of courses" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="openCourse(course)">{{course.name}} - {{course.year}}</button>
-	  		</div>
+			  </div>
+			<div class="col-md-12" *ngIf="coursesVisible && courses.length == 0">
+				<div>No se encontraron cursos.</div>
+			</div>
 	  	</div>
 	  	<div class="col-md-6">
 	  		<!--<button type="button" class="btn btn-primary btn-lg col-lg-6">Mi Cuenta</button>-->

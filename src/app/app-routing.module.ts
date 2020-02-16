@@ -11,6 +11,7 @@ import { ChatComponent } from './chat/chat.component';
 import { AuthGuard } 			from './auth/auth-guard';
 
 const routes: Routes = [
+		{path: '', component: LoginComponent},
 		{path: 'login', component: LoginComponent},
 		{path: 'menu-teacher', component: TeacherMenuComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},
 		{path: 'course-teacher', component: TeacherCourseComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},

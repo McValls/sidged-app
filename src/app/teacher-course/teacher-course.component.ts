@@ -19,6 +19,7 @@ export class TeacherCourseComponent implements OnInit {
 	course: Course;
   classes: Array<CourseClass>;
   presentismVisible: boolean = false;
+  loading: boolean = false;
 
 	constructor(private sharingDataService: SharingDataService,
 		private router: Router,
@@ -33,14 +34,17 @@ export class TeacherCourseComponent implements OnInit {
 
 
   private getClasses() {
+    this.loading = true;
     this.classService.getClasses(this.course.id).subscribe((data: Array<CourseClass>) => {
       this.classes = data;
+      this.loading = false;
     }, err => {
       console.log(err);
+      this.loading = false;
     });
   }
 
-  newClass() {  
+  newClass() { 
     let dialogRef = this.dialog.open(NewClassDialogComponent, {
       width: '600px',
       data: {},
@@ -49,11 +53,14 @@ export class TeacherCourseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().toPromise().then((data) => {
+      this.loading = true;
       this.classService.createClass(this.course.id, data).subscribe(
         (res: CourseClass) => {
         this.router.navigate(['course-teacher/class/'+res.id+'/date/'+res.date]);
+        this.loading = false;
       }, err => {
         console.log(err);
+        this.loading = false;
       });
     });
   }
@@ -68,11 +75,14 @@ export class TeacherCourseComponent implements OnInit {
 
     dialogRef.afterClosed().toPromise().then((data) => {
       if(data) {
+        this.loading = true;
         this.courseService.notifyStudents(data.subject, data.message, this.course.id).subscribe(
           res => {
             alert("Mensaje enviado correctamente.");
+            this.loading = false;
           }, err => {
             console.log(err);
+            this.loading = false;
           }
         );
       }

@@ -34,29 +34,35 @@ export class TeacherClassPresentListComponent implements OnInit{
   	}
 
 	  presentClicked(studentId: number) {
+      this.loading = true;
       this.classService.updatePresent(this.classId, studentId, StudentPresent.PRESENT).subscribe((data) => {
         this.studentsList[this.currentIndex].present = StudentPresent.PRESENT;
         this.nextIndex();
       }, err => {
         console.log(err);
+        this.loading = false;
       });
   	}
 
     absentClicked(studentId: number) {
+      this.loading = true;
       this.classService.updatePresent(this.classId, studentId, StudentPresent.ABSENT).subscribe((data) => {
         this.studentsList[this.currentIndex].present = StudentPresent.ABSENT;
         this.nextIndex();
       }, err => {
         console.log(err);
+        this.loading = false;
       });
     }
 
     lateClicked(studentId: number) {
+      this.loading = true;
       this.classService.updatePresent(this.classId, studentId, StudentPresent.LATE).subscribe((data) => {
         this.studentsList[this.currentIndex].present = StudentPresent.LATE;
         this.nextIndex();
       }, err => {
         console.log(err);
+        this.loading = false;
       });
     }
 
@@ -72,6 +78,7 @@ export class TeacherClassPresentListComponent implements OnInit{
         this.currentIndex--;
       }
       this.currentStudent = this.studentsList[this.currentIndex];
+      this.loading = false;
     }
 
     nextIndex() {
@@ -82,6 +89,7 @@ export class TeacherClassPresentListComponent implements OnInit{
         this.currentIndex++;
       }
       this.currentStudent = this.studentsList[this.currentIndex];
+      this.loading = false;
     }  	
 
 }
