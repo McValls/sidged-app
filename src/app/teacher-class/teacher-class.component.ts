@@ -19,7 +19,7 @@ export class TeacherClassComponent implements OnInit {
     classDate: Date;
     isTakePresentsOpened: boolean = false;
     isFilesOpened: boolean = false;
-
+    loading: boolean = false;
     class: CourseClass;
 
   	constructor(
@@ -36,8 +36,10 @@ export class TeacherClassComponent implements OnInit {
     }
 
     private getClass() {
+      this.loading = true;
       this.classService.getClass(this.classId).subscribe((res: CourseClass) => {
         this.class = res;
+        this.loading = false;
       });
     }
 
@@ -46,13 +48,17 @@ export class TeacherClassComponent implements OnInit {
     }
 
     finishClass() {
+      this.loading = true;
       this.classService.finishClass(this.courseId, this.classId).subscribe(() => {
+        this.loading = false;
         this.router.navigate(['/course-teacher']);
       });
     }
 
     reopenClass() {
+      this.loading = true;
       this.classService.reopenClass(this.courseId, this.classId).subscribe(() => {
+        this.loading = false;
         this.router.navigate(['/course-teacher']);
       })
     }
