@@ -23,10 +23,8 @@
 				<file-documents [classId]="classId"></file-documents>		
 			</div>
 		</div>  		
-  		
-  		
-		  <button *ngIf="class.classState === 'PENDIENTE'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(finishClass())">Cerrar Clase</button>
-		  <button *ngIf="class.classState === 'FINALIZADA'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(reopenClass())">Reabrir Clase</button>
+		  <button *ngIf="class && class.classState === 'PENDIENTE'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(finishClass())">Cerrar Clase</button>
+		  <button *ngIf="class && class.classState === 'FINALIZADA'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(reopenClass())">Reabrir Clase</button>
   		
 	  </div>
 	  <loading [loading]="loading" [fullScreen]="true"></loading>

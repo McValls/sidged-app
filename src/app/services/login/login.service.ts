@@ -3,13 +3,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { UserData }	from '../../model/user-data.model';
 import { Observable } from 'rxjs';
 import { SharingDataService } from '../local-storage/sharing-data.service';
+import { Globals } from '../Globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url = "https://sidged-be.herokuapp.com/login";
+  url = Globals.BACKEND_HOST + "/login";
   private loggedUser: UserData;
 
   constructor(private http: HttpClient, private sharingDataService: SharingDataService) {

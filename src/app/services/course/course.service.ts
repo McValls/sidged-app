@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Course, Shift } from '../../model/course/course.model';
 import { Period, PeriodType } from '../../model/period/period.model';
 import { UserType } from '../../model/user-type';
-
+import { Globals } from '../Globals';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,11 @@ export class CourseService {
   }
 
   private getCourses(userType: UserType){
-    return this.http.get<Array<Course>>("https://sidged-be.herokuapp.com/course/by-"+userType.toLowerCase());
+    return this.http.get<Array<Course>>(Globals.BACKEND_HOST + "/course/by-"+userType.toLowerCase());
   }
 
   public notifyStudents(subject: string, message: string, courseId: number) {
-    return this.http.post<void>("https://sidged-be.herokuapp.com/course/notify-students", {
+    return this.http.post<void>(Globals.BACKEND_HOST + "/course/notify-students", {
       subject: subject,
       message: message,
       courseId: courseId

@@ -3,6 +3,7 @@ import { FileDocumentType, ClassFileDocument } from '../model/file-documents/fil
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { SharingDataService } from '../services/local-storage/sharing-data.service';
 import { FileDocumentService  } from '../services/file-document/file-document.service';
+import { Globals } from '../services/Globals';
 
 @Component({
   selector: 'file-documents',
@@ -42,7 +43,7 @@ export class FileDocumentsComponent implements OnInit {
     private initAfuConfig() {
       this.afuConfig = {
           uploadAPI: {
-            url:"https://sidged-be.herokuapp.com/file-documents/class/" + this.classId,
+            url:Globals.BACKEND_HOST + "/file-documents/class/" + this.classId,
             headers: {
              "Authorization" : this.sharingDataService.getJwtToken()
             }

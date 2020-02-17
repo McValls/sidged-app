@@ -14,7 +14,7 @@ import { StudentLink } from '../model/student/student-link.model';
 })
 export class StudentMenuComponent implements OnInit {
 
-	courses: Array<Course>;
+	courses: Array<Course> = new Array();
 	coursesVisible: boolean = false;
 
 	links: Array<StudentLink>;

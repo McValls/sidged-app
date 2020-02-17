@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule } from 'ng2-charts';
 
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NgxLoadingModule } from 'ngx-loading';
@@ -35,6 +35,7 @@ import { NewClassDialogComponent } from './dialogs/new-class-dialog/new-class-di
 import { NavbarComponent } from './navbar/navbar.component';
 import { CoursePresentismComponent } from './teacher-course/course-presentism/course-presentism.component';
 import { NotifyStudentsDialogComponent } from './dialogs/notify-students-dialog/notify-students-dialog.component';
+import { ErrorIntercept } from './interceptors/errors.interceptor';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,12 @@ import { NotifyStudentsDialogComponent } from './dialogs/notify-students-dialog/
     useClass: AddHeaderInterceptor,
     multi: true,
     deps: [SharingDataService]
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorIntercept,
+    multi: true,
+    deps: [Router]
   }],
   bootstrap: [AppComponent]
 })
