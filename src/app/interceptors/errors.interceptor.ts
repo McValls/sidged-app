@@ -26,6 +26,7 @@ export class ErrorIntercept implements HttpInterceptor {
                         console.log(error.error.error);
                         console.log(error.error.message);
                         this.router.navigate(['/login']);
+                        return throwError(errorMessage);
                     } else {
                         if (error.error instanceof ErrorEvent) {
                             // client-side error

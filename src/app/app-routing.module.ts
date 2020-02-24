@@ -1,6 +1,5 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } 		from './app.component';
 import { LoginComponent } 		from './login/login.component';
 import { TeacherMenuComponent }	from './teacher-menu/teacher-menu.component';
 import { TeacherCourseComponent }	from './teacher-course/teacher-course.component';
@@ -9,6 +8,8 @@ import { TeacherClassComponent }	from './teacher-class/teacher-class.component';
 import { StudentMenuComponent } from './student-menu/student-menu.component';
 import { ChatComponent } from './chat/chat.component';
 import { AuthGuard } 			from './auth/auth-guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
 
 const routes: Routes = [
 		{path: '', component: LoginComponent},
@@ -21,7 +22,9 @@ const routes: Routes = [
 		{path: 'menu-student', component: StudentMenuComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT']}},
 		{path: 'course-student', component: StudentCourseComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT']}},
 
-		{path: 'chat', component: ChatComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT', 'TEACHER']}}
+		{path: 'chat', component: ChatComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT', 'TEACHER']}},
+		{path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT', 'TEACHER']}},
+		{path: 'recovery-password', component: RecoveryPasswordComponent}
 ];
 
 @NgModule({

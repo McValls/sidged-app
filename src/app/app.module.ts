@@ -36,6 +36,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CoursePresentismComponent } from './teacher-course/course-presentism/course-presentism.component';
 import { NotifyStudentsDialogComponent } from './dialogs/notify-students-dialog/notify-students-dialog.component';
 import { ErrorIntercept } from './interceptors/errors.interceptor';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { ErrorIntercept } from './interceptors/errors.interceptor';
     NavbarComponent,
     CoursePresentismComponent,
     NotifyStudentsDialogComponent,
+    ChangePasswordComponent,
+    RecoveryPasswordComponent,
   ],
   imports: [
     BrowserModule,

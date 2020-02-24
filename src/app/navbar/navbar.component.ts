@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   menuHref: string;
   loginHref: string;
+  changePasswordHref: string;
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
@@ -33,19 +34,31 @@ export class NavbarComponent implements OnInit {
     private sharingDataService: SharingDataService) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationStart) {
-          if (event.url.indexOf("/login") === -1) {
-            this.hide = false;
-          } else {
+          if(this.notNavbarPaths(event, ["/", "/login", "/recovery-password"])) {
             this.hide = true;
+          } else {
+            this.hide = false;
           }
           let loggedUser = this.sharingDataService.getLoggedUser();
           if(loggedUser != null) {
             this.type = loggedUser.userType;
             this.menuHref = this.type == UserType.STUDENT? "/menu-student" : "/menu-teacher";
             this.loginHref = "/login";
+            this.changePasswordHref = "/change-password";
           }
         }
       })
+  }
+
+  private notNavbarPaths(event: NavigationStart, urls: string[]): boolean {
+    let invalidPath: boolean = false;
+    urls.forEach(url => {
+      if(event.url === url) {
+        invalidPath = true;
+      }
+    });
+    return invalidPath;
+    
   }
 
   ngOnInit() {}

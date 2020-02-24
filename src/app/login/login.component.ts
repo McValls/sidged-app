@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             this.loading = false;
         }, (err: any) => {
           console.log(err);
-          this.loginService.logout();
+          //this.loginService.logout();
           this.wrongLogin = true;
           this.loading = false;
         });

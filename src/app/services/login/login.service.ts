@@ -22,6 +22,21 @@ export class LoginService {
     return postResult;
   }
 
+  public changePassword(oldPassword: string, newPassword: string) {
+    let username = this.getLoggedUser().username;
+
+    return this.http.put(this.url + "/change-password", {
+      username: username,
+      oldPassword : oldPassword,
+      newPassword : newPassword
+    });
+
+  }
+
+  public recoveryPassword(username: string, email: string) {
+    return this.http.get(this.url + "/recovery-password?username=" + username + "&email=" + email);
+  }
+
   public setLoggedUser(loggedUser: UserData) : void {
     this.loggedUser = loggedUser;
   }
