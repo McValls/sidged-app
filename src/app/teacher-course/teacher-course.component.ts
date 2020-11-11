@@ -28,7 +28,7 @@ export class TeacherCourseComponent implements OnInit {
     public dialog: MatDialog) { }
 
 	ngOnInit() {
-		this.course = this.sharingDataService.get("selectedCourse");
+		this.course = this.sharingDataService.get('selectedCourse');
     this.getClasses();
 	}
 
@@ -56,7 +56,7 @@ export class TeacherCourseComponent implements OnInit {
       this.loading = true;
       this.classService.createClass(this.course.id, data).subscribe(
         (res: CourseClass) => {
-        this.router.navigate(['course-teacher/class/'+res.id+'/date/'+res.date]);
+        this.router.navigate([`course-teacher/${this.course.id}/class/${res.classNumber}/date/${res.date}`]);
         this.loading = false;
       }, err => {
         console.log(err);
@@ -78,7 +78,7 @@ export class TeacherCourseComponent implements OnInit {
         this.loading = true;
         this.courseService.notifyStudents(data.subject, data.message, this.course.id).subscribe(
           res => {
-            alert("Mensaje enviado correctamente.");
+            alert('Mensaje enviado correctamente.');
             this.loading = false;
           }, err => {
             console.log(err);

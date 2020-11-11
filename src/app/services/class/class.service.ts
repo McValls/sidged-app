@@ -17,8 +17,8 @@ export class ClassService {
   	return this.http.post<CourseClass>(Globals.BACKEND_HOST + "/class", body);
   }
 
-  public getClass(classId: number) {
-    return this.http.get<CourseClass>(Globals.BACKEND_HOST + "/class/" + classId);
+  public getClass(courseId: number, classNumber: number) {
+    return this.http.get<CourseClass>(Globals.BACKEND_HOST + "/class/" + classNumber + "/course/" + courseId);
   }
 
   public getClasses(courseId: number) {

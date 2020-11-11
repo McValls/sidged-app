@@ -17,7 +17,8 @@ const routes: Routes = [
 		{path: 'menu-teacher', component: TeacherMenuComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},
 		{path: 'course-teacher', component: TeacherCourseComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},
 		{path: 'course-teacher/class', component: TeacherClassComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},
-		{path: 'course-teacher/class/:classId/date/:classDate', component: TeacherClassComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},
+		{path: 'course-teacher/:courseId/class/:classNumber/date/:classDate',
+			component: TeacherClassComponent, canActivate: [AuthGuard], data: {roles: ['TEACHER']}},
 
 		{path: 'menu-student', component: StudentMenuComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT']}},
 		{path: 'course-student', component: StudentCourseComponent, canActivate: [AuthGuard], data: {roles: ['STUDENT']}},

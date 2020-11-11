@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SharingDataService } from '../services/local-storage/sharing-data.service';
-import { ClassService } from '../services/class/class.service';
-import { Course } from '../model/course/course.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseClass } from '../model/course/course-class.model';
-import { ClassStudent, StudentPresent } from '../model/student/class-student.model';
+import { ClassService } from '../services/class/class.service';
 
 
 @Component({
@@ -15,7 +12,7 @@ import { ClassStudent, StudentPresent } from '../model/student/class-student.mod
 export class TeacherClassComponent implements OnInit {
 
     courseId: number;
-	  classId: number;
+	  classNumber: number;
     classDate: Date;
     isTakePresentsOpened: boolean = false;
     isFilesOpened: boolean = false;
@@ -25,19 +22,18 @@ export class TeacherClassComponent implements OnInit {
   	constructor(
       private router: Router,
   		private route: ActivatedRoute,
-  		private classService: ClassService,
-  		private sharingDataService: SharingDataService) { }
+  		private classService: ClassService) { }
 
   	ngOnInit() {
-      this.courseId = this.sharingDataService.get("selectedCourse").id;
-  		this.classId = this.route.snapshot.params.classId;
+      this.courseId = this.route.snapshot.params.courseId;
+  		this.classNumber = this.route.snapshot.params.classNumber;
       this.classDate = this.route.snapshot.params.classDate;
       this.getClass();
     }
 
     private getClass() {
       this.loading = true;
-      this.classService.getClass(this.classId).subscribe((res: CourseClass) => {
+      this.classService.getClass(this.courseId, this.classNumber).subscribe((res: CourseClass) => {
         this.class = res;
         this.loading = false;
       });
@@ -49,7 +45,7 @@ export class TeacherClassComponent implements OnInit {
 
     finishClass() {
       this.loading = true;
-      this.classService.finishClass(this.courseId, this.classId).subscribe(() => {
+      this.classService.finishClass(this.courseId, this.classNumber).subscribe(() => {
         this.loading = false;
         this.router.navigate(['/course-teacher']);
       });
@@ -57,7 +53,7 @@ export class TeacherClassComponent implements OnInit {
 
     reopenClass() {
       this.loading = true;
-      this.classService.reopenClass(this.courseId, this.classId).subscribe(() => {
+      this.classService.reopenClass(this.courseId, this.classNumber).subscribe(() => {
         this.loading = false;
         this.router.navigate(['/course-teacher']);
       })
