@@ -9,8 +9,8 @@
 			</div>
 			<div class="teacher-class-present-list" *ngIf="isTakePresentsOpened">
 				<teacher-class-present-list 
-					[courseId]="courseId" 
-					[classId]="classId"
+					[courseCode]="courseCode" 
+					[classNumber]="classNumber"
 					(showListListener)="onTakePresentsClick($event)"></teacher-class-present-list>
 			</div>
 		</div>

@@ -12,45 +12,45 @@ export class ClassService {
 
   constructor(private http: HttpClient) { }
 
-  public createClass(courseId: number, classDate: Date) {
-    let body = {date: classDate, courseId: courseId};    
-  	return this.http.post<CourseClass>(Globals.BACKEND_HOST + "/class", body);
+  public createClass(courseCode: string, classDate: Date) {
+    const body = {date: classDate, courseCode};
+  	return this.http.post<CourseClass>(Globals.BACKEND_HOST + '/class', body);
   }
 
-  public getClass(courseId: number, classNumber: number) {
-    return this.http.get<CourseClass>(Globals.BACKEND_HOST + "/class/" + classNumber + "/course/" + courseId);
+  public getClass(courseCode: string, classNumber: number) {
+    return this.http.get<CourseClass>(Globals.BACKEND_HOST + '/class/' + classNumber + '/course/' + courseCode);
   }
 
-  public getClasses(courseId: number) {
-  	return this.http.get<Array<CourseClass>>(Globals.BACKEND_HOST + "/class/course/" + courseId);
+  public getClasses(courseCode: string) {
+  	return this.http.get<Array<CourseClass>>(Globals.BACKEND_HOST + '/class/course/' + courseCode);
   }
 
-  public getStudentsByCourse(courseId: number, classId: number) {
-    return this.http.get<Array<ClassStudent>>(Globals.BACKEND_HOST + "/class/"+classId+"/course/"+courseId+"/students");
+  public getStudentsByCourse(courseCode: string, classNumber: number) {
+    return this.http.get<Array<ClassStudent>>(Globals.BACKEND_HOST + '/class/'+classNumber+'/course/'+courseCode+'/students');
   }
 
-  public updatePresent(classId: number, studentId: number, studentPresent: StudentPresent) {
-	  return this.http.put<Array<ClassStudent>>(Globals.BACKEND_HOST + "/student-present/class/"+classId+
-      	"/student/"+studentId,
+  public updatePresent(courseCode: string, classNumber: number, studentId: number, studentPresent: StudentPresent) {
+	  return this.http.put<Array<ClassStudent>>(Globals.BACKEND_HOST + '/student-present/course/'+courseCode+'/class/'+classNumber+
+      	'/student/'+studentId,
       	{present: studentPresent});
   }
 
-  public finishClass(courseId: number, classId: number) {
-    return this.http.put(Globals.BACKEND_HOST + "/class/finish/"+classId+"/course/"+courseId, {});
+  public finishClass(courseCode: string, classNumber: number) {
+    return this.http.put(Globals.BACKEND_HOST + '/class/finish/'+classNumber+'/course/'+courseCode, {});
   }
 
-  public reopenClass(courseId: number, classId: number) {
-    return this.http.put(Globals.BACKEND_HOST + "/class/reopen/"+classId+"/course/"+courseId, {});
+  public reopenClass(courseCode: string, classNumber: number) {
+    return this.http.put(Globals.BACKEND_HOST + '/class/reopen/'+classNumber+'/course/'+courseCode, {});
   }
 
   public getPresent(present: StudentPresent) {
     switch (present) {
       case StudentPresent.PRESENT:
-        return "PRESENTE";
+        return 'PRESENTE';
       case StudentPresent.ABSENT:
-        return "AUSENTE";
+        return 'AUSENTE';
       case StudentPresent.LATE:
-        return "TARDE";
+        return 'TARDE';
     }
   }
 

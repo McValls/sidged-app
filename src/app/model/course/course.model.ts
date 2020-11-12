@@ -10,7 +10,7 @@ export enum Shift {
 
 export class Course {
 
-	id: number;
+	code: string;
 	name: string;
 	shift: Shift;
 	year: number;

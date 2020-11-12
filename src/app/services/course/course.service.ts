@@ -21,52 +21,51 @@ export class CourseService {
   }
 
   private getCourses(userType: UserType){
-    return this.http.get<Array<Course>>(Globals.BACKEND_HOST + "/course/by-"+userType.toLowerCase());
+    return this.http.get<Array<Course>>(Globals.BACKEND_HOST + '/course/by-'+userType.toLowerCase());
   }
 
-  public notifyStudents(subject: string, message: string, courseId: number) {
-    return this.http.post<void>(Globals.BACKEND_HOST + "/course/notify-students", {
-      subject: subject,
-      message: message,
-      courseId: courseId
+  public notifyStudents(subject: string, message: string, courseCode: string) {
+    return this.http.post<void>(Globals.BACKEND_HOST + '/course/notify-students', {
+      subject,
+      message,
+      courseCode
     });
   }
 
   public getShift(shift: Shift){
     switch(shift) {
       case Shift.MORNING:
-        return "Mañana";
+        return 'Mañana';
       case Shift.AFTERNOON:
-        return "Tarde";
+        return 'Tarde';
       case Shift.NIGHT:
-        return "Noche";
+        return 'Noche';
     }
   }
 
   public getPeriodType(periodType: PeriodType){
     switch(periodType) {
       case PeriodType.QUARTERLY:
-        return "Cuatrimestral";
+        return 'Cuatrimestral';
       case PeriodType.BIANNUAL:
-        return "Semestral";
+        return 'Semestral';
       case PeriodType.ANNUAL:
-        return "Anual";
+        return 'Anual';
       case PeriodType.SUMMER:
-        return "De Verano";
+        return 'De Verano';
     }
   }
 
   public getPeriod(period: Period){
-    let periodString = "";
     switch(period.periodType){
       case PeriodType.QUARTERLY:
-        return "Cuatrimestre " + period.number;
+        return 'Cuatrimestre ' + period.number;
       case PeriodType.BIANNUAL:
-        return "Semestre " + period.number;
+        return 'Semestre ' + period.number;
       case PeriodType.ANNUAL:
-        return "Anual";
+        return 'Anual';
       case PeriodType.SUMMER:
-        return "Verano";
+        return 'Verano';
     }
   }
 

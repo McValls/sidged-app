@@ -11,7 +11,7 @@ import { ClassService } from '../services/class/class.service';
 })
 export class TeacherClassComponent implements OnInit {
 
-    courseId: number;
+    courseCode: string;
 	  classNumber: number;
     classDate: Date;
     isTakePresentsOpened: boolean = false;
@@ -25,7 +25,7 @@ export class TeacherClassComponent implements OnInit {
   		private classService: ClassService) { }
 
   	ngOnInit() {
-      this.courseId = this.route.snapshot.params.courseId;
+      this.courseCode = this.route.snapshot.params.courseCode;
   		this.classNumber = this.route.snapshot.params.classNumber;
       this.classDate = this.route.snapshot.params.classDate;
       this.getClass();
@@ -33,7 +33,7 @@ export class TeacherClassComponent implements OnInit {
 
     private getClass() {
       this.loading = true;
-      this.classService.getClass(this.courseId, this.classNumber).subscribe((res: CourseClass) => {
+      this.classService.getClass(this.courseCode, this.classNumber).subscribe((res: CourseClass) => {
         this.class = res;
         this.loading = false;
       });
@@ -45,7 +45,7 @@ export class TeacherClassComponent implements OnInit {
 
     finishClass() {
       this.loading = true;
-      this.classService.finishClass(this.courseId, this.classNumber).subscribe(() => {
+      this.classService.finishClass(this.courseCode, this.classNumber).subscribe(() => {
         this.loading = false;
         this.router.navigate(['/course-teacher']);
       });
@@ -53,7 +53,7 @@ export class TeacherClassComponent implements OnInit {
 
     reopenClass() {
       this.loading = true;
-      this.classService.reopenClass(this.courseId, this.classNumber).subscribe(() => {
+      this.classService.reopenClass(this.courseCode, this.classNumber).subscribe(() => {
         this.loading = false;
         this.router.navigate(['/course-teacher']);
       })

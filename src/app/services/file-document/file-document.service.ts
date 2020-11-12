@@ -14,21 +14,21 @@ export class FileDocumentService {
 
   	constructor(private http: HttpClient) { }
 
-  	public saveFileLink(classId: number, name: string, link: string){
-  		let params = {classId: classId, name: name, link: link};
-  		return this.http.post(Globals.BACKEND_HOST + "/file-documents/link", params)
+  	public saveFileLink(classNumber: number, name: string, link: string){
+  		let params = {classNumber, name, link};
+  		return this.http.post(Globals.BACKEND_HOST + '/file-documents/link', params)
   	}
 
-  	public searchFiles(classId: number): Observable<Array<ClassFileDocument>>{
-  		return this.http.get<Array<ClassFileDocument>>(Globals.BACKEND_HOST + "/file-documents/class/" + classId);
+  	public searchFiles(classNumber: number): Observable<Array<ClassFileDocument>>{
+  		return this.http.get<Array<ClassFileDocument>>(Globals.BACKEND_HOST + '/file-documents/class/' + classNumber);
   	}
 
     public searchFilesByCourse(course: Course): Observable<Array<ClassFileDocument>> {
-      return this.http.get<Array<ClassFileDocument>>(Globals.BACKEND_HOST + "/file-documents/course/" + course.id);
+      return this.http.get<Array<ClassFileDocument>>(Globals.BACKEND_HOST + '/file-documents/course/' + course.code);
     }
 
   	public downloadFile(file: ClassFileDocument) {
-  		return this.http.get(file.linkContent, 
+  		return this.http.get(file.linkContent,
   			{responseType: 'blob' as 'json'});
   	}
 

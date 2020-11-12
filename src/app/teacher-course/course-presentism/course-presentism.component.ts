@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Course, Shift } from 'src/app/model/course/course.model';
-import { AnalysisService } from 'src/app/services/analysis/analysis.service';
 import { PercentageByStudentPresent } from 'src/app/model/presentism/presentism.model';
+import { AnalysisService } from 'src/app/services/analysis/analysis.service';
 import { CourseService } from 'src/app/services/course/course.service';
 
 @Component({
@@ -30,11 +30,11 @@ export class CoursePresentismComponent implements OnInit {
 		},
 	  	barChartLegend : true,
 	  	barChartType : 'bar',
-  	};	
-	  	
+  	};
+
   	barChartLabels: Array<any>;
-  	barChartData: Array<any>;	
-  	chartReady: boolean = false;
+  	barChartData: Array<any>;
+  	chartReady = false;
 
   	/**********************************************/
 
@@ -55,8 +55,8 @@ export class CoursePresentismComponent implements OnInit {
 
   	/**********************************************/
 
-  	loading: boolean = false;
-  	
+  	loading = false;
+
 
 	  constructor(private analysisService: AnalysisService,
 		private courseService: CourseService) { }
@@ -66,7 +66,7 @@ export class CoursePresentismComponent implements OnInit {
 	}
 
   	goToAnalysis() {
-		  this.analysisService.getAnalysisDataByCourse(this.selectedCourse.id).subscribe(res => {
+		  this.analysisService.getAnalysisDataByCourse(this.selectedCourse.code).subscribe(res => {
 
 			if(res != null){
 				this.barChartLabels = [];
@@ -76,35 +76,35 @@ export class CoursePresentismComponent implements OnInit {
 					{data: [], label: '% Ausente', backgroundColor: 'red'},
 				]
 				res.presentismByMonth.forEach(monthData => {
-					this.barChartLabels.push("Mes " + monthData.month);
-					this.barChartData[0]['data'].push(
+					this.barChartLabels.push('Mes ' + monthData.month);
+					this.barChartData[0].data.push(
 						monthData.percentagesByMonth
-							.find(percentage => percentage.studentPresent === "PRESENT").percentage)
+							.find(percentage => percentage.studentPresent === 'PRESENT').percentage)
 
-					this.barChartData[1]['data'].push(
+					this.barChartData[1].data.push(
 						monthData.percentagesByMonth
-							.find(percentage => percentage.studentPresent === "LATE").percentage)
+							.find(percentage => percentage.studentPresent === 'LATE').percentage)
 
-					this.barChartData[2]['data'].push(
+					this.barChartData[2].data.push(
 						monthData.percentagesByMonth
-							.find(percentage => percentage.studentPresent === "ABSENT").percentage)
+							.find(percentage => percentage.studentPresent === 'ABSENT').percentage)
 				});
 
 
-				let presentAveragePercentage: PercentageByStudentPresent = res.totalAveragesPercentages
-					.find(percentage => percentage.studentPresent === "PRESENT");
+				const presentAveragePercentage: PercentageByStudentPresent = res.totalAveragesPercentages
+					.find(percentage => percentage.studentPresent === 'PRESENT');
 
-				let lateAveragePercentage: PercentageByStudentPresent = res.totalAveragesPercentages
-					.find(percentage => percentage.studentPresent === "LATE");
+				const lateAveragePercentage: PercentageByStudentPresent = res.totalAveragesPercentages
+					.find(percentage => percentage.studentPresent === 'LATE');
 
-				let absentAveragePercentage: PercentageByStudentPresent = res.totalAveragesPercentages
-					.find(percentage => percentage.studentPresent === "ABSENT");
+				const absentAveragePercentage: PercentageByStudentPresent = res.totalAveragesPercentages
+					.find(percentage => percentage.studentPresent === 'ABSENT');
 
 				this.pieChartLabels = ['Presentes', 'Tardes', 'Ausentes'];
 				this.pieChartData = [presentAveragePercentage.percentage, lateAveragePercentage.percentage, absentAveragePercentage.percentage];
 
 				this.chartReady = true;
-				
+
 			} else {
 				this.chartReady = false;
 			}

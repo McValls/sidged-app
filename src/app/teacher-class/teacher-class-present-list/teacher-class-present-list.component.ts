@@ -9,8 +9,8 @@ import { ClassService } from '../../services/class/class.service';
 })
 export class TeacherClassPresentListComponent implements OnInit{
 
-	  @Input() classId: number;
-	  @Input() courseId: number;
+	  @Input() classNumber: number;
+	  @Input() courseCode: string;
 	  studentsList: Array<ClassStudent>;
 	  currentStudent: ClassStudent;
   	currentIndex: number = 0;
@@ -25,7 +25,7 @@ export class TeacherClassPresentListComponent implements OnInit{
   	}
 
   	private getStudents(){
-  		this.classService.getStudentsByCourse(this.courseId, this.classId).subscribe(
+  		this.classService.getStudentsByCourse(this.courseCode, this.classNumber).subscribe(
   			(data: Array<ClassStudent>) => {
   				this.studentsList = data;
   				this.currentStudent = this.studentsList[this.currentIndex];
@@ -35,7 +35,7 @@ export class TeacherClassPresentListComponent implements OnInit{
 
 	  presentClicked(studentId: number) {
       this.loading = true;
-      this.classService.updatePresent(this.classId, studentId, StudentPresent.PRESENT).subscribe((data) => {
+      this.classService.updatePresent(this.courseCode, this.classNumber, studentId, StudentPresent.PRESENT).subscribe((data) => {
         this.studentsList[this.currentIndex].present = StudentPresent.PRESENT;
         this.nextIndex();
       }, err => {
@@ -46,7 +46,7 @@ export class TeacherClassPresentListComponent implements OnInit{
 
     absentClicked(studentId: number) {
       this.loading = true;
-      this.classService.updatePresent(this.classId, studentId, StudentPresent.ABSENT).subscribe((data) => {
+      this.classService.updatePresent(this.courseCode, this.classNumber, studentId, StudentPresent.ABSENT).subscribe((data) => {
         this.studentsList[this.currentIndex].present = StudentPresent.ABSENT;
         this.nextIndex();
       }, err => {
@@ -57,7 +57,7 @@ export class TeacherClassPresentListComponent implements OnInit{
 
     lateClicked(studentId: number) {
       this.loading = true;
-      this.classService.updatePresent(this.classId, studentId, StudentPresent.LATE).subscribe((data) => {
+      this.classService.updatePresent(this.courseCode, this.classNumber, studentId, StudentPresent.LATE).subscribe((data) => {
         this.studentsList[this.currentIndex].present = StudentPresent.LATE;
         this.nextIndex();
       }, err => {
@@ -90,6 +90,6 @@ export class TeacherClassPresentListComponent implements OnInit{
       }
       this.currentStudent = this.studentsList[this.currentIndex];
       this.loading = false;
-    }  	
+    }
 
 }

@@ -35,7 +35,7 @@ export class TeacherCourseComponent implements OnInit {
 
   private getClasses() {
     this.loading = true;
-    this.classService.getClasses(this.course.id).subscribe((data: Array<CourseClass>) => {
+    this.classService.getClasses(this.course.code).subscribe((data: Array<CourseClass>) => {
       this.classes = data;
       this.loading = false;
     }, err => {
@@ -54,9 +54,9 @@ export class TeacherCourseComponent implements OnInit {
 
     dialogRef.afterClosed().toPromise().then((data) => {
       this.loading = true;
-      this.classService.createClass(this.course.id, data).subscribe(
+      this.classService.createClass(this.course.code, data).subscribe(
         (res: CourseClass) => {
-        this.router.navigate([`course-teacher/${this.course.id}/class/${res.classNumber}/date/${res.date}`]);
+        this.router.navigate([`course-teacher/${this.course.code}/class/${res.classNumber}/date/${res.date}`]);
         this.loading = false;
       }, err => {
         console.log(err);
@@ -76,7 +76,7 @@ export class TeacherCourseComponent implements OnInit {
     dialogRef.afterClosed().toPromise().then((data) => {
       if(data) {
         this.loading = true;
-        this.courseService.notifyStudents(data.subject, data.message, this.course.id).subscribe(
+        this.courseService.notifyStudents(data.subject, data.message, this.course.code).subscribe(
           res => {
             alert('Mensaje enviado correctamente.');
             this.loading = false;
@@ -94,7 +94,7 @@ export class TeacherCourseComponent implements OnInit {
   }
 
   goToClass(courseClass: CourseClass){
-    this.router.navigate(['course-teacher/class/'+courseClass.id+'/date/'+courseClass.date]);
+    this.router.navigate([`course-teacher/${this.course.code}/class/${courseClass.classNumber}/date/${courseClass.date}`]);
   }
 
   seePresentism() {

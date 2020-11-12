@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit {
 
     userData: UserData;
   	userType: UserType;
-  	courseId: number;
+  	courseCode: string;
     messagesCollection: AngularFirestoreCollection<Message>;
   	messages: Observable<Message[]>;
     form: FormGroup;
@@ -27,11 +27,11 @@ export class ChatComponent implements OnInit {
       private sharingDataService: SharingDataService) { 
       this.userData = sharingDataService.getLoggedUser();
   		this.userType = sharingDataService.getLoggedUser().userType;
-      this.courseId = sharingDataService.getCurrentCourse().id;
+      this.courseCode = sharingDataService.getCurrentCourse().code;
   	}
 
   	ngOnInit() {
-      this.messagesCollection = this.db.collection<Message>("messages-"+this.courseId, ref => ref.orderBy('date'));
+      this.messagesCollection = this.db.collection<Message>("messages-"+this.courseCode, ref => ref.orderBy('date'));
   		this.messages = this.messagesCollection.valueChanges();
       this.messages.subscribe(() => {
         this.scrollMessagesContainerToBottom();
@@ -49,8 +49,8 @@ export class ChatComponent implements OnInit {
     sendMessage() {
        this.form.get("text").markAsTouched();
        if(this.form.valid){
-         let textValue = this.form.get("text").value;
-         let message: Message = {
+         const textValue = this.form.get("text").value;
+         const message: Message = {
            author: this.userData.fullName,
            text: textValue,
            date: new Date(),
@@ -63,7 +63,7 @@ export class ChatComponent implements OnInit {
 
     private scrollMessagesContainerToBottom() {
       setTimeout(() => {
-        var messagesContainer = document.getElementsByClassName("messages-container")[0];
+        const messagesContainer = document.getElementsByClassName("messages-container")[0];
         messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
       }, 0);
     }
