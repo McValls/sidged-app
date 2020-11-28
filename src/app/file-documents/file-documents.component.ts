@@ -13,7 +13,8 @@ import { Globals } from '../services/Globals';
 export class FileDocumentsComponent implements OnInit {
 
     /* Inputs */
-    @Input() classId: number;
+    @Input() classNumber: number;
+    @Input() courseCode: string;
 
     /* Fields */
     form: FormGroup;
@@ -43,13 +44,13 @@ export class FileDocumentsComponent implements OnInit {
     private initAfuConfig() {
       this.afuConfig = {
           uploadAPI: {
-            url:Globals.BACKEND_HOST + "/file-documents/class/" + this.classId,
+            url:Globals.BACKEND_HOST + '/file-documents/course/' + this.courseCode + '/class/' + this.classNumber,
             headers: {
-             "Authorization" : this.sharingDataService.getJwtToken()
+             Authorization : this.sharingDataService.getJwtToken()
             }
           },
           multiple: false,
-          maxSize: "16",
+          maxSize: '16',
           hideProgressBar: false,
           hideResetBtn: false,
           hideSelectBtn: false,
@@ -65,8 +66,8 @@ export class FileDocumentsComponent implements OnInit {
     }
 
     private getFiles() {
-      if(this.classId != null){
-        this.fileDocumentService.searchFiles(this.classId)
+      if(this.classNumber != null){
+        this.fileDocumentService.searchFiles(this.courseCode, this.classNumber)
         .subscribe(files => {
           this.fileList = files;
         });  
@@ -93,7 +94,7 @@ export class FileDocumentsComponent implements OnInit {
 
       });
 
-      this.fileDocumentService.saveFileLink(this.classId, this.formName.value, this.formLink.value)
+      this.fileDocumentService.saveFileLink(this.classNumber, this.courseCode, this.formName.value, this.formLink.value)
         .subscribe((data: any) => {
           this.getFiles();
           this.form.get('selectedFileDocumentType').setValue(null);
@@ -103,7 +104,7 @@ export class FileDocumentsComponent implements OnInit {
     }
 
     download(file: ClassFileDocument) {
-      if(file.fileDocumentType.toString() == "BLOB") {
+      if(file.fileDocumentType.toString() == 'BLOB') {
         this.fileDocumentService.downloadFile(file).subscribe(res => {
           this.openDownloadFile(res, file.name);
         });  
@@ -113,8 +114,7 @@ export class FileDocumentsComponent implements OnInit {
     }
 
     private openDownloadFile(response: any, filename: string){
-      let dataType = response.type;
-      let downloadLink = document.createElement('a');
+      const downloadLink = document.createElement('a');
       downloadLink.href = window.URL.createObjectURL(response);
       if (filename)
           downloadLink.setAttribute('download', filename);
@@ -123,7 +123,7 @@ export class FileDocumentsComponent implements OnInit {
     }
 
     private openLink(link: string) {
-      var win = window.open(link, '_blank');
+      const win = window.open(link, '_blank');
       win.focus();
     }
 

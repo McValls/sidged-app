@@ -20,7 +20,7 @@
 				<button type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(onSeeFilesClick(!isFilesOpened))">Archivos</button>
 			</div>
 			<div class="col-md-12" *ngIf="isFilesOpened">
-				<file-documents [classId]="classId"></file-documents>		
+				<file-documents [classNumber]="classNumber" [courseCode]="courseCode"></file-documents>		
 			</div>
 		</div>  		
 		  <button *ngIf="class && class.classState === 'PENDIENTE'" type="button" class="btn btn-primary btn-lg col-lg-6" (click)="(finishClass())">Cerrar Clase</button>

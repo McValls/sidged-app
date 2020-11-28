@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { Location } from '@angular/common';
 import { SharingDataService } from '../services/local-storage/sharing-data.service';
 import { UserType } from '../model/user-type';
@@ -9,7 +9,7 @@ import { UserType } from '../model/user-type';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   navbarOpen = false;
   hide = false;
@@ -34,17 +34,17 @@ export class NavbarComponent implements OnInit {
     private sharingDataService: SharingDataService) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationStart) {
-          if(this.notNavbarPaths(event, ["/", "/login", "/recovery-password"])) {
+          if(this.notNavbarPaths(event, ['/', '/login', '/recovery-password'])) {
             this.hide = true;
           } else {
             this.hide = false;
           }
-          let loggedUser = this.sharingDataService.getLoggedUser();
+          const loggedUser = this.sharingDataService.getLoggedUser();
           if(loggedUser != null) {
             this.type = loggedUser.userType;
-            this.menuHref = this.type == UserType.STUDENT? "/menu-student" : "/menu-teacher";
-            this.loginHref = "/login";
-            this.changePasswordHref = "/change-password";
+            this.menuHref = this.type == UserType.STUDENT? '/menu-student' : '/menu-teacher';
+            this.loginHref = '/login';
+            this.changePasswordHref = '/change-password';
           }
         }
       })
@@ -58,9 +58,6 @@ export class NavbarComponent implements OnInit {
       }
     });
     return invalidPath;
-    
   }
-
-  ngOnInit() {}
 
 }

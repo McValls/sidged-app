@@ -10,9 +10,9 @@ import { Globals } from '../Globals';
 export class AnalysisService {
 
   constructor(private http: HttpClient) { }
-  
+
   getAnalysisDataByCourse(courseCode: string): Observable<CoursePresentismData> {
-    return this.http.get<CoursePresentismData>(Globals.BACKEND_HOST + "/presentism-data/course/"+courseCode);
+    return this.http.get<CoursePresentismData>(Globals.BACKEND_HOST + '/presentism-data/course/'+courseCode);
   }
 
 }

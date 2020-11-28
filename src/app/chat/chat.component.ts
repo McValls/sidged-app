@@ -64,7 +64,7 @@ export class ChatComponent implements OnInit {
     private scrollMessagesContainerToBottom() {
       setTimeout(() => {
         const messagesContainer = document.getElementsByClassName("messages-container")[0];
-        messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
+        // messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
       }, 0);
     }
 
